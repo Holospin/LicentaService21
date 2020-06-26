@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ro">
+<meta charset="UTF-8">
+
+<style>
+    html {
+        background-image: url("greybg.jpeg");
+        font-family: "Helvetica", cursive, sans-serif;
+    }
+
+    p {
+        align: center;
+        font-size: 1.5vw;
+    }
+
+    .column {
+        text-align: center;
+    }
+
+    #videoElement {
+        width: 500px;
+        height: 375px;
+        display:inline-block;
+        margin-left: 33%;
+        transform: translateX(-50%);
+        padding-bottom: 15px;
+    }
+
+    #centerImg {
+        display:inline-block;
+        width: 500px;
+        height: 375px;
+        outline: darkgray;
+        outline-width: 10px;
+    }
+
+    button {
+        background-color: whitesmoke; color: black;
+        padding: 10px;
+        text-align: center;
+        font-size: 1vw;
+        border-radius: 5px;
+        opacity: 1;
+    }
+
+    button:hover {
+        background: rgba(45,45,45,0.95);
+        color: white;
+    }
+
+    div.column {
+        background-color: whitesmoke;
+        opacity: 0.90;
+        border-radius: 5px;
+    }
+
+    h2 {
+        font-size:2vw;
+        text-align:center;
+    }
+
+    span {
+        background-color: whitesmoke;
+        opacity: 0.8;
+        border-radius: 5px;
+        padding: 2px;
+    }
+
+    form{
+        display: inline;
+        padding: 5px;
+    }
+
+</style>
+
+<head>
+    <title>Stația 3</title>
+    <h2><span>Stația 3 </span></h2>
+</head>
+
+<div class="row">
+    <div class="column">
+        <br>
+        <p id="demo3"></p>
+        <div class="cointainer">
+        <form action="ServiceHTML.html">
+            <button type="submit">Înapoi la pagina principală</button><br><br><br>
+
+    </form>
+    <form action="Statia1.html">
+        <button id="statii" type="submit">Stația 1</button>
+    </form>&nbsp;
+    <form action="Statia2.html">
+        <button id="statii" type="submit">Stația 2</button>
+    </form>&nbsp;
+    <form action="Statia4.html">
+        <button id="statii" type="submit">Stația 4</button>
+    </form>
+    </div>
+    <br><br>    
+    </div>
+</div>
+<br>
+    <video autoplay="true" id="videoElement"> </video>
+    <img src="statia3.png?" alt="Numar inmatriculare masina curenta" class="centerImg" id="re">
+<br>
+
+<script>
+
+    let parola3 = localStorage['parola3'];
+    let password3 = prompt('Introdu parola ' +parola3,"");
+    if(password3 !== null  && parola3 === password3.toString())
+        alert('Bun venit');
+    else
+    {
+        window.location="ServiceHTML.html";
+    }
+
+    let video = document.querySelector("#videoElement");
+
+    if (navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices.getUserMedia({ video: true })
+            .then(function (stream) {
+                video.srcObject = stream;
+            })
+            .catch(function () {
+                console.log("Eroare la accesul camerei video");
+            });
+    }
+
+    let dataSalvata3 = parseInt(localStorage['dataSalvata3']) || 0;
+    let distance3 = new Date();
+
+
+    // Update the count down every 1 second
+    setInterval(function ()
+    {
+
+        // Get today's date and time
+        let now3 = new Date();
+
+        // Find the distance between now and the count down date
+        distance3 = dataSalvata3 - now3;
+
+        // Time calculations for days, hours, minutes and seconds
+        let hours3 = Math.floor((distance3 % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        let minutes3 = Math.floor((distance3 % (1000 * 60 * 60)) / (1000 * 60));
+        let seconds3 = Math.floor((distance3 % (1000 * 60)) / 1000);
+        // Output the result in an element with id="demo"
+        document.getElementById("demo3").innerHTML = hours3 + "h "
+            + minutes3 + "m " + seconds3 + "s ";
+
+        // If the count down is over, write some text
+        if (distance3 < 0) {
+            //  clearInterval(x);
+            document.getElementById("demo3").innerHTML = "Disponibilă";
+        }
+
+    }, 1000);
+
+    var reimg
+window.onload=function () {
+  reimg=document.getElementById('re')
+  setInterval(function () {
+    reimg.src=reimg.src.replace(/\?.*/,function () {
+      return '?'+new Date()
+    })
+  },5000)
+}    
+
+</script>
+
+</html>
