@@ -1,2 +1,2 @@
 # LicentaService21
-Lucrare licență - Aplicație web pentru managemetul service-ului auto
+Bachelors Degree - Web App for Managing a Car Service
